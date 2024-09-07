@@ -23,14 +23,16 @@ o:value("telecom", translate("中国电信"))
 o:value("unicom", translate("中国联通"))
 o.default = "edu"
 o.rmempty = false
+o.description = translate("请选择网络服务提供商")
 
 -- 添加网络接口选择
 o = s:option(ListValue, "interface", translate("网络接口"))
+o.description = translate("仅显示被分配了 ipv4 地址的接口，此处 ipv4 地址对应请求中的 wlan_user_ip")
 
 -- 获取所有接口及其IP地址
 local interfaces = {}
 for _, iface in ipairs(sys.net.devices()) do
-    if iface:match("^wlan%d") or iface:match("^eth%d") then
+    if iface:match("^wlan%d") or iface:match("^eth%d") or iface:match("^wan%d") then
         local ip = util.trim(sys.exec("ip addr show " .. iface .. " | grep 'inet ' | awk '{print $2}' | cut -d/ -f1"))
         if ip ~= "" then
             interfaces[iface] = iface .. " (" .. ip .. ")"
