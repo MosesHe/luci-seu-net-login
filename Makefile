@@ -14,7 +14,7 @@ define Package/$(PKG_NAME)
   SUBMENU:=3. Applications
   TITLE:=SEU Network Login for LuCI
   PKGARCH:=all
-  DEPENDS:=+luci-base +curl
+  DEPENDS:=+curl
 endef
 
 define Package/$(PKG_NAME)/description
