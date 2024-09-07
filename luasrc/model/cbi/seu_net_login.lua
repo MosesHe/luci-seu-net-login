@@ -36,7 +36,7 @@ o = s:option(Button, "_login", translate("登录"))
 o.inputstyle = "apply"
 o.write = function()
     local result = sys.exec("/usr/bin/seu_net_login.sh")
-    luci.http.write("<script>alert('" .. luci.util.pcdata(result) .. "');</script>")
+    luci.http.write("<script>alert(" .. luci.util.serialize_json(result) .. ");</script>")
 end
 
 -- o = s:option(DummyValue, "_log", translate("View Log"))
