@@ -15,6 +15,15 @@ o = s:option(Value, "password", translate("密码"))
 o.password = true
 o.rmempty = false
 
+-- 添加运营商选择
+o = s:option(ListValue, "isp", translate("运营商"))
+o:value("edu", translate("教育网"))
+o:value("cmcc", translate("中国移动"))
+o:value("telecom", translate("中国电信"))
+o:value("unicom", translate("中国联通"))
+o.default = "edu"
+o.rmempty = false
+
 -- 添加网络接口选择
 o = s:option(ListValue, "interface", translate("网络接口"))
 
@@ -41,6 +50,7 @@ o.write = function(self, section)
     uci:set("seu_net_login", section, "username", self.map:get(section, "username"))
     uci:set("seu_net_login", section, "password", self.map:get(section, "password"))
     uci:set("seu_net_login", section, "interface", self.map:get(section, "interface"))
+    uci:set("seu_net_login", section, "isp", self.map:get(section, "isp"))
     uci:commit("seu_net_login")
     
     -- 执行登录脚本
