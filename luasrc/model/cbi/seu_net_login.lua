@@ -34,7 +34,16 @@ o.rmempty = false
 
 o = s:option(Button, "_login", translate("登录"))
 o.inputstyle = "apply"
-o.write = function()
+o.write = function(self, section)
+    local uci = require "luci.model.uci".cursor()
+    
+    -- 保存表单数据到配置文件
+    uci:set("seu_net_login", section, "username", self.map:get(section, "username"))
+    uci:set("seu_net_login", section, "password", self.map:get(section, "password"))
+    uci:set("seu_net_login", section, "interface", self.map:get(section, "interface"))
+    uci:commit("seu_net_login")
+    
+    -- 执行登录脚本
     local result = sys.exec("/usr/bin/seu_net_login.sh")
     luci.http.write("<script>alert(" .. luci.util.serialize_json(result) .. ");</script>")
 end
