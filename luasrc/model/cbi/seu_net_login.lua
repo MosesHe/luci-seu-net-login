@@ -2,7 +2,7 @@ local m, s, o
 local sys = require "luci.sys"
 local util = require "luci.util"
 
-m = Map("seu_net_login", translate("SEU 校园网认证"), translate("使用 curl 向认证服务器发送GET请求以实现校园网认证"))
+m = Map("seu_net_login", translate("SEU 校园网认证"), translate("使用 curl 向认证服务器发送GET请求以实现宿舍区域校园网认证"))
 
 s = m:section(TypedSection, "login", translate("登录设置"))
 s.anonymous = true
