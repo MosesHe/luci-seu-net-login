@@ -19,3 +19,5 @@ response=$(curl -s "$AUTH_URL")
 echo "$(date): Request URL: $AUTH_URL" >> /tmp/seu_net_login.log
 echo "$(date): Response: $response" >> /tmp/seu_net_login.log
 echo "----------------------------------------" >> /tmp/seu_net_login.log
+
+echo "$response"
